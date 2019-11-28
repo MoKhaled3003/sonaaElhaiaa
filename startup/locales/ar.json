@@ -1,0 +1,15 @@
+{
+	"merchant not found in damen": "التاجر غير موجود في ضامن",
+	"national id already exist": "الرقم القومي موجود من قبل",
+	"Card is not found": "الكارت غير موجود",
+	"Balance is not sufficient": "الرصيد غير كافي",
+	"Beneficiary is not in merchant's list": "المستفيد غير تابع للتاجر",
+	"Merchant is not found": "التاجر غير موجود",
+	"invalid_data": "بيانات خاطئة",
+	"beneficiary not found": "مستفيد غير موجود",
+	"invalid amount": "لايوجد مبلغ ",
+	"duplicated nid in same file": "رقم قومي مكرر في نفس الملف",
+	"Transaction is not completed": "عملية غير ناجحة",
+	"Beneficiary is not active": "المستفيد غير مفعل",
+	"Beneficiary is not found": "مستفيد غير موجود"
+}
