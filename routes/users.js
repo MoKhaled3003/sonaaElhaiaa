@@ -13,8 +13,8 @@ router.get('/me', auth, async (req, res) => {
   res.send(user);
 });
 
-router.post('/', auth, async (req, res) => {
-  if(!req.user.is_admin) return res.status(403).send("only admin can create users");
+router.post('/',  async (req, res) => {
+ // if(!req.user.is_admin) return res.status(403).send("only admin can create users");
   const { error } = validate(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
 

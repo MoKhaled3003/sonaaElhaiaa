@@ -44,7 +44,7 @@ router.post('/upload', auth, async function(req, res) {
              //console.log(index, row[2]);
              const nid = row[2];
              
-             if ( nid){
+             if (nid){
                 const found = await Beneficiary.findOne( { where: { nid: row[2] }});
                 
                 if(! found){
@@ -62,21 +62,10 @@ router.post('/upload', auth, async function(req, res) {
                   await Beneficiary.create({ 
                     name: row[1], 
                     nid: row[2], 
-                    marital_status: row[4],
                     gender: row[5],
-                    health_status: row[6],
                     gov_id: gov_id,
                     town: row[8],
-                    village: row[9],
-                    address: row[10],
-                    association: row[11],
-                    family_count: row[12],
-                    total_income: row[13],
-                    avg_income_per_person: row[14],
-                    phone: row[15],
-                    reseacher: row[16],
-                    notes: row[17],
-                    merchant_id: m_id
+                    village: row[9]
                   });
 
 

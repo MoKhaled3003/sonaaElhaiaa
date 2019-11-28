@@ -256,20 +256,10 @@ router.post('/upload', auth, async function(req, res) {
              let row_data = { 
               name: row[1], 
               nid: row[2], 
-              marital_status: row[4],
               gender: row[5],
-              health_status: row[6],
               gov_id: gov_id,
               town: row[8],
-              village: row[9],
-              address: row[10],
-              association: row[11],
-              family_count: row[12],
-              total_income: row[13],
-              avg_income_per_person: row[14],
-              phone: row[15],
-              reseacher: row[16],
-              notes: row[17],
+              village: row[9]
               
             };
              
@@ -281,48 +271,40 @@ router.post('/upload', auth, async function(req, res) {
                   continue;
                 }
                 else{
-                  const m_id = row[18];
+                //   const m_id = row[18];
                  
-                  let damen_merchant = await DamenMerchant.findOne({
-                    where: { merchant_code: m_id }
-                  });
-                  if (! damen_merchant) {
-                    rejected += 1;
-                    rejections.push({serial: row[0],...row_data, reason: __("merchant not found in damen")});
-                    continue;
-                  }
+                //   let damen_merchant = await DamenMerchant.findOne({
+                //     where: { merchant_code: m_id }
+                //   });
+                //   if (! damen_merchant) {
+                //     rejected += 1;
+                //     rejections.push({serial: row[0],...row_data, reason: __("merchant not found in damen")});
+                //     continue;
+                //   }
                   
 
-                  let new_id = damen_merchant.merchant_code.toString().padStart(6, '0');
-                  await Merchant.findOrCreate({
-                    where: {id: new_id}, 
-                  defaults: {
-                    damen_id: damen_merchant.merchant_code,
-                    is_active: true
-                  }
-                });
+                //   let new_id = damen_merchant.merchant_code.toString().padStart(6, '0');
+                //   await Merchant.findOrCreate({
+                //     where: {id: new_id}, 
+                //   defaults: {
+                //     damen_id: damen_merchant.merchant_code,
+                //     is_active: true
+                //   }
+                // });
                   const ben = await Beneficiary.create({ 
                     ...row_data,
-                    merchant_id: new_id,
+                    // merchant_id: new_id,
                     category_id: category_id
                   });
 
                   const account_id = ben.generateAccountId();
-        const account = await Account.create({ id: account_id, balance: 0.0, beneficiary_id: ben.id})
-        ben.account_id = account.id;
-        await ben.save({fields: ['account_id']});
-        imported += 1;
-
-
-
-
+                  const account = await Account.create({ id: account_id, balance: 0.0, beneficiary_id: ben.id})
+                  ben.account_id = account.id;
+                  await ben.save({fields: ['account_id']});
+                  imported += 1;
 
                 }
-                
-
-             }
-
-                
+             }            
         }
       }
 
